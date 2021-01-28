@@ -21,7 +21,7 @@ open class MathGenerate {
         return result
     }
 
-    private fun getAnswerOnExample(example: String): Int = -1
+    private fun getAnswerOnExample(example: String): Int = TODO()
 
     open fun getData(operation: List<String>, begin: Int, end: Int):Pair<String,Int>{
         val operationValid = operation.filter {
