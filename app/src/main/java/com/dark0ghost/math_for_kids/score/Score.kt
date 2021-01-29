@@ -3,10 +3,17 @@ package com.dark0ghost.math_for_kids.score
 import android.content.SharedPreferences
 
 
-open class Score(private val  prefs: SharedPreferences){
+object Score{
+    private lateinit var  prefs: SharedPreferences
 
-    private  val editor:  SharedPreferences.Editor = prefs.edit()
+    private lateinit var  editor:  SharedPreferences.Editor
+
     private var localScore: Int = 0
+
+    fun setSharedPreferences(pref: SharedPreferences){
+        prefs = pref
+
+    }
 
     fun updateScore(){
         localScore++
