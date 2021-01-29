@@ -12,6 +12,8 @@ object Score{
 
     fun setSharedPreferences(pref: SharedPreferences){
         prefs = pref
+        maxScore = prefs.getInt("max score",0)
+        arrayScore= prefs.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("-1")
 
     }
 
@@ -30,10 +32,11 @@ object Score{
         localScore = 0
     }
 
-    var maxScore: Int = prefs.getInt("max score",0)
+    var maxScore: Int = -1
     private set
 
-    val arrayScore: MutableList<String> = prefs.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("0")
+    var arrayScore: MutableList<String> =  mutableListOf("0")
+    private set
 
 
     fun save(): Score{
