@@ -1,5 +1,7 @@
-package com.dark0ghost.math_for_kids
+package com.dark0ghost.math_for_kids.math_impl
 
+import pl.kremblewski.expressionevaluator.evaluate
+import java.math.BigDecimal
 import kotlin.random.Random
 
 open class MathGenerate {
@@ -11,9 +13,7 @@ open class MathGenerate {
             result += operation.random(Random) + arrayNumber.random(Random).toString()
         return result
     }
-
-
-
+    
     private fun generateNumberArray(begin: Int,end: Int,len: Int): List<Int> {
         val result = mutableListOf<Int>()
         for (_i in 0 until len)
@@ -21,9 +21,9 @@ open class MathGenerate {
         return result
     }
 
-    private fun getAnswerOnExample(example: String): Int = TODO()
+    private fun getAnswerOnExample(example: String): BigDecimal = evaluate(example)
 
-    open fun getData(operation: List<String>, begin: Int, end: Int):Pair<String,Int>{
+    open fun getData(operation: List<String>, begin: Int, end: Int):Pair<String,BigDecimal>{
         val operationValid = operation.filter {
             it in validOperation
         }
