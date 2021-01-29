@@ -32,5 +32,4 @@ open class MathGenerate {
         val answer = getAnswerOnExample(mathExample)
         return Pair(mathExample,answer)
     }
-
 }
