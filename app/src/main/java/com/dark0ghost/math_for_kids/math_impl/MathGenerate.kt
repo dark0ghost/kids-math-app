@@ -18,7 +18,7 @@ open class MathGenerate {
 
     private var lastNumber = 0
 
-    private fun generateMathExample(operation: List<String>, arrayNumber: List<Int>): String {
+    private fun generateMathExample(operation: List<MathOperation>, arrayNumber: List<Int>): String {
         var result: String = arrayNumber.random().toString()
         for (i in arrayNumber.indices)
             result += marker(operation.random(Random), arrayNumber.random(Random))
@@ -49,32 +49,29 @@ open class MathGenerate {
     private fun <T: Number> isInteger(v: T): Boolean = "." !in v.toString()
 
 
-    private fun marker(operation: String,number: Int): String {
-        if (operation == MathOperation.Division.operation && number.isZero()) {
+    private fun marker(operation: MathOperation,number: Int): String {
+        if (operation == MathOperation.Division && number.isZero()) {
             lastNumber = number
-            return operation + getNotZeroValue().toString()
+            return operation.operation + getNotZeroValue().toString()
         }
-        if(operation == MathOperation.Division.operation &&  !lastNumber.isIntegerResult(number)){
+        if(operation == MathOperation.Division &&  !lastNumber.isIntegerResult(number)){
             lastNumber = number
-            return operation + getNumberForIntegerResult().toString()
+            return operation.operation + getNumberForIntegerResult().toString()
         }
         lastNumber = number
-        return operation+number.toString()
+        return operation.operation + number.toString()
     }
 
     private fun getAnswerOnExample(example: String): BigDecimal = evaluate(example)
 
-    open fun getData(operation: List<String>, begin: Int, end: Int): Pair<String,BigDecimal> {
-        val operationValid = operation.filter {
-            it in validOperation
-        }
+    open fun getData(operation: List<MathOperation>, begin: Int, end: Int): Pair<String,BigDecimal> {
         this.begin = begin
         this.end = end
         var mathExample: String
         var answer: BigDecimal
         do {
-            val numberArray = generateNumberArray(operationValid.size * 2)
-            mathExample = generateMathExample(operationValid, numberArray)
+            val numberArray = generateNumberArray(operation.size * 2)
+            mathExample = generateMathExample(operation, numberArray)
             answer = getAnswerOnExample(mathExample)
         }while (!isInteger(answer))
         return Pair(mathExample, answer)
