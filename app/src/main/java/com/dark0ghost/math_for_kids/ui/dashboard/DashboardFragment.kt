@@ -39,7 +39,7 @@ class DashboardFragment : Fragment() {
        /* dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })*/
-        val result = mathGen.getData(listOf(MathOperation.Division,MathOperation.Multiplication),-9,1000,1)
+        val result = mathGen.getData(listOf(MathOperation.Division,MathOperation.Multiplication),-100,1000,1)
                 /*editText.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEND -> {
