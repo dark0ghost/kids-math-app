@@ -31,16 +31,16 @@ class DashboardFragment : Fragment() {
     ): View {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
-        editText = binding.answer
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        editText = binding.answer
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
        /* dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })*/
-        val result = mathGen.getData(listOf(MathOperation.Division,MathOperation.Minus),0,20)
-        editText.setOnEditorActionListener { v, actionId, event ->
+        val result = mathGen.getData(listOf(MathOperation.Division,MathOperation.Multiplication),-9,1000,1)
+                /*editText.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEND -> {
 
@@ -48,7 +48,7 @@ class DashboardFragment : Fragment() {
                 }
                 else -> false
             }
-        }
+        }*/
         textView.text = result.first +" ${result.second}"
         return root
     }
