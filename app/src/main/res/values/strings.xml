@@ -4,4 +4,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_max_score">максимальное количество правильных ответов: </string>
+    <string name="number_hint">Введи ответ</string>
 </resources>

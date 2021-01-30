@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dark0ghost.math_for_kids.databinding.FragmentDashboardBinding
 import com.dark0ghost.math_for_kids.math_impl.MathGenerate
+import com.dark0ghost.math_for_kids.math_impl.MathOperation
 
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var editText: EditText
     private var _binding: FragmentDashboardBinding? = null
     private val mathGen: MathGenerate = MathGenerate()
 
@@ -27,15 +31,24 @@ class DashboardFragment : Fragment() {
     ): View {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        editText = binding.answer
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
        /* dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })*/
-        val result = mathGen.getData(listOf("+","-","/","*"),0,20)
+        val result = mathGen.getData(listOf(MathOperation.Division,MathOperation.Multiplication),-100,1000,1)
+                /*editText.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+
+                    true
+                }
+                else -> false
+            }
+        }*/
         textView.text = result.first +" ${result.second}"
         return root
     }
