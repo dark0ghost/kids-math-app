@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dark0ghost.math_for_kids.databinding.FragmentDashboardBinding
-import com.dark0ghost.math_for_kids.math_impl.MathGenerate
-import com.dark0ghost.math_for_kids.math_impl.MathOperation
+import org.dark0ghost.math_emaple_generator.MathGenerate
+import org.dark0ghost.math_emaple_generator.MathOperation
 
 class DashboardFragment : Fragment() {
 
