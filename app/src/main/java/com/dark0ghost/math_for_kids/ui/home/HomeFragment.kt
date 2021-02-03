@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         val scoreTextView: TextView = binding.score
         val textView: TextView = binding.textHome
-        scoreTextView.text = getText(R.string.title_max_score).toString() + Score.maxScore.toString()
+        scoreTextView.text = "${getText(R.string.title_max_score)} ${Score.maxScore}"
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

@@ -50,7 +50,7 @@ class DashboardFragment : Fragment() {
         mathExample = mathGen.getData(mathOperation,5,25,1)
         scoreView.text = Score.score.toString()
         editText.setOnEditorActionListener {
-            v, actionId, event ->
+            _, _, _ ->
             Log.d("edittext",editText.text.toString())
             if(editText.text.toString() == mathExample.second.toString()){
                 Score.updateScore()
@@ -67,8 +67,8 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        Score.save()
         super.onDestroyView()
+        Score.clearScore()
         _binding = null
     }
 }
