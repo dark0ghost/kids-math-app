@@ -50,25 +50,27 @@ class DashboardFragment : Fragment() {
         mathExample = mathGen.getData(mathOperation,5,25,1)
         scoreView.text = Score.score.toString()
         editText.setOnEditorActionListener {
-            v, actionId, event ->
+            _, _, _ ->
             Log.d("edittext",editText.text.toString())
             if(editText.text.toString() == mathExample.second.toString()){
                 Score.updateScore()
                 scoreView.text = Score.score.toString()
                 mathExample = mathGen.getData(mathOperation,5,25,1)
-                textView.text = mathExample.first +" ${mathExample.second}"
+                val text = mathExample.first +" ${mathExample.second}"
+                textView.text = text
                 editText.text.clear()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
-        textView.text = mathExample.first +" ${mathExample.second}"
+        val text = mathExample.first +" ${mathExample.second}"
+        textView.text = text
         return root
     }
 
     override fun onDestroyView() {
-        Score.save()
         super.onDestroyView()
+        Score.clearScore()
         _binding = null
     }
 }

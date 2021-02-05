@@ -13,8 +13,7 @@ object Score{
     fun setSharedPreferences(pref: SharedPreferences){
         prefs = pref
         maxScore = prefs.getInt("max score",0)
-        arrayScore= prefs.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("-1")
-
+        arrayScore = prefs.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("-1")
     }
 
     fun updateScore(){
@@ -41,7 +40,7 @@ object Score{
 
     fun save(): Score{
         editor.putString("all score",arrayScore.toString())
-        editor.putInt("max score", localScore)
+        editor.putInt("max score", maxScore)
         return this@Score
     }
 }

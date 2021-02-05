@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,9 +15,14 @@ import com.dark0ghost.math_for_kids.score.Score
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
     private lateinit var score: Score
+
+    private lateinit var homeViewModel: HomeViewModel
+
+    private lateinit var editText: EditText
+
+    private var _binding: FragmentHomeBinding? = null
+
 
 
 
@@ -37,10 +43,10 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         val scoreTextView: TextView = binding.score
         val textView: TextView = binding.textHome
-        scoreTextView.text = getText(R.string.title_max_score).toString() + Score.maxScore.toString()
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        editText = binding.lenExample
+        val text: String = "${getText(R.string.title_max_score)} ${Score.maxScore}"
+        scoreTextView.text = text
+
         return root
     }
 
