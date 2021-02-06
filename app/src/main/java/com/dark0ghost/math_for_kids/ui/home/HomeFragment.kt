@@ -17,8 +17,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var score: Score
 
-    private lateinit var homeViewModel: HomeViewModel
-
     private lateinit var editText: EditText
 
     private var _binding: FragmentHomeBinding? = null
@@ -36,13 +34,10 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val scoreTextView: TextView = binding.score
-        val textView: TextView = binding.textHome
         editText = binding.lenExample
         val text: String = "${getText(R.string.title_max_score)} ${Score.maxScore}"
         scoreTextView.text = text

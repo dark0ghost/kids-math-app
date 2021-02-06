@@ -6,4 +6,5 @@
     <string name="title_max_score">максимальное количество правильных ответов: </string>
     <string name="number_hint">Введи ответ</string>
     <string name="len_example">длина примера</string>
+    <string name="range_input">Введи диапозон используемых чисел</string>
 </resources>
