@@ -1,20 +1,12 @@
 package com.dark0ghost.math_for_kids.score
 
 import android.content.SharedPreferences
+import com.dark0ghost.math_for_kids.settings_class.SettingsClass
 
 
-object Score{
-    private lateinit var  prefs: SharedPreferences
-
-    private lateinit var  editor:  SharedPreferences.Editor
+object Score: SettingsClass{
 
     private var localScore: Int = 0
-
-    fun setSharedPreferences(pref: SharedPreferences){
-        prefs = pref
-        maxScore = prefs.getInt("max score",0)
-        arrayScore = prefs.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("-1")
-    }
 
     fun updateScore(){
         localScore++
@@ -37,10 +29,15 @@ object Score{
     var arrayScore: MutableList<String> =  mutableListOf("0")
     private set
 
-
-    fun save(): Score{
+    override fun save(preferences: SharedPreferences) {
+        val editor = preferences.edit()
         editor.putString("all score",arrayScore.toString())
         editor.putInt("max score", maxScore)
-        return this@Score
+        editor.apply()
+    }
+
+    override fun init(preferences: SharedPreferences) {
+        maxScore = preferences.getInt("max score",0)
+        arrayScore = preferences.getString("all score","0")?.split("")?.toMutableList()?: mutableListOf("-1")
     }
 }
