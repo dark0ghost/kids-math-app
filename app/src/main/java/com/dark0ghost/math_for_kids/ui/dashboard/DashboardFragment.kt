@@ -58,8 +58,7 @@ class DashboardFragment : Fragment() {
             }
             return@setOnEditorActionListener false
         }
-        val text = mathExample.first +" ${mathExample.second}"
-        textView.text = text
+        textView.text = mathExample.first
         return root
     }
 
