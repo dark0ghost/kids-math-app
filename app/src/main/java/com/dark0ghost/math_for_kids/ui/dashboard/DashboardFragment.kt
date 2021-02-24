@@ -42,6 +42,7 @@ class DashboardFragment : Fragment() {
         val root: View = binding.root
         val textView: TextView = binding.textDashboard
         val mathOperation = listOf(MathOperation.Division,MathOperation.Multiplication)
+
         mathExample = mathGen.getData(mathOperation,5,25,1)
         scoreView.text = Score.score.toString()
         editText.setOnEditorActionListener {
@@ -51,8 +52,7 @@ class DashboardFragment : Fragment() {
                 Score.updateScore()
                 scoreView.text = Score.score.toString()
                 mathExample = mathGen.getData(mathOperation,5,25,1)
-                val text = mathExample.first +" ${mathExample.second}"
-                textView.text = text
+                textView.text =  mathExample.first
                 editText.text.clear()
                 return@setOnEditorActionListener true
             }
